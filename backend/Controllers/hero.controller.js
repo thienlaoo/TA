@@ -85,40 +85,49 @@ export const deleteHero = async (req, res) => {
 };
 
 export const updateHero = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const {
-      nickname,
-      real_name,
-      origin_description,
-      superpowers,
-      catch_phrase,
-      images,
-    } = req.body;
+    try {
+      const { id } = req.params;
+      const {
+        nickname,
+        real_name,
+        origin_description,
+        superpowers,
+        catch_phrase,
+        images,
+      } = req.body;
+  
+      const hero = await Hero.findByPk(id);
+  
+      if (!hero) {
+        res.status(404).json({ error: 'Hero not found' });
+        return;
+      }
 
-    const hero = await Hero.findByPk(id);
-
-    if (!hero) {
-      res.status(404).json({ error: 'Hero not found' });
-      return;
+  
+      if (nickname) {
+        hero.nickname = nickname;
+      }
+      if (real_name) {
+        hero.real_name = real_name;
+      }
+      if (origin_description) {
+        hero.origin_description = origin_description;
+      }
+      if (superpowers) {
+        hero.superpowers = superpowers;
+      }
+      if (catch_phrase) {
+        hero.catch_phrase = catch_phrase;
+      }
+      if (images) {
+        hero.images = images;
+      }
+  
+      await hero.save();
+      res.json(hero);
+    } catch (error) {
+      console.error('Error updating hero:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    hero.nickname = nickname;
-    hero.real_name = real_name;
-    hero.origin_description = origin_description;
-    hero.superpowers = superpowers;
-    hero.catch_phrase = catch_phrase;
-    hero.images = images;
-
-    await hero.save();
-    res.json(hero);
-  } catch (error) {
-    console.error('Error updating hero:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
+  };
+  

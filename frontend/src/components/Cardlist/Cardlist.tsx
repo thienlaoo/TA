@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./Cardlist.scss";
 import { Card } from "../Card/Card";
-import { Superman } from "../types/temp";
+import { Hero } from "../types/Hero";
 import { Pagination } from "../Pagination/Pagination";
 
 interface Props {
-    supermens: Superman[];
+    heroes: Hero[] | null;
 }
 
-export const Cardlist: React.FC<Props> = ({ supermens }) => {
+export const Cardlist: React.FC<Props> = ({ heroes }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const perPage = 6;
 
@@ -17,10 +17,10 @@ export const Cardlist: React.FC<Props> = ({ supermens }) => {
     };
 
     const displayedChars = () => {
-        if (supermens) {
+        if (heroes) {
             const startIndex = (currentPage - 1) * perPage;
             const endIndex = startIndex + perPage;
-            return supermens.slice(startIndex, endIndex);
+            return heroes.slice(startIndex, endIndex);
         }
         return [];
     }
@@ -30,14 +30,14 @@ export const Cardlist: React.FC<Props> = ({ supermens }) => {
             <div className="list_wrapper">
                 <div className="cardlist_container">
                     <div className="cardlist">
-                        {displayedChars().map((superman, index) => (
-                            <Card key={index} superman={superman} />
+                        {displayedChars().map((hero, index) => (
+                            <Card key={index} hero={hero} />
                         ))}
                     </div>
                 </div>
             </div>
             <Pagination
-                total={Math.ceil((supermens?.length || 0) / perPage)}
+                total={Math.ceil((heroes?.length || 0) / perPage)}
                 currentPage={currentPage}
                 onPageChange={onPageChange}
             />

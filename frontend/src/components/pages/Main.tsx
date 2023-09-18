@@ -1,39 +1,37 @@
 import { Header } from '../Header';
 import { Footer } from '../Footer/Footer';
 import { Cardlist } from '../Cardlist/Cardlist';
-import { Superman } from '../types/temp';
+import { Hero } from '../types/Hero';
+import { useEffect, useState } from 'react';
+import { getAllHeroes } from '../Helpers/fetchHelper';
+import { useDispatch, useSelector } from 'react-redux';
+import { setHeroes } from '../Redux/actions';
+import rootReducer from '../Redux/reducers';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({
+    reducer: rootReducer,
+  });
 
 export const Main = () => {
+    const dispatch = useDispatch();
+    const heroes = useSelector((state) => state.heroes);
 
-    const supermens: Superman[] = [];
+    useEffect(() => {
+        getAllHeroes('http://localhost:3001/heroes')
+            .then((data) => {
+                dispatch(setHeroes(data));
+            })
+            .catch((error) => {
+                console.log('Fetch error:', error);
+            });
+    }, [dispatch]);
 
-for (let i = 0; i < 20; i++) {
-  const superman = {
-    nickname: 'Superman',
-    real_name: 'Clark Kent',
-    origin_description:
-      "He was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction...",
-    superpowers: [
-      'solar energy absorption and healing factor',
-      'solar flare and heat vision',
-      'solar invulnerability',
-      'flight',
-    ],
-    catch_phrase: 'Look, up in the sky, it\'s a bird, it\'s a plane, it\'s Superman!',
-    images: [
-      'https://example.com/superman1.jpg',
-      'https://example.com/superman2.jpg',
-    ],
-  };
-
-  supermens.push(superman);
-}
-   
-  return (
-    <div className="App">
-        <Header/>
-        <Cardlist supermens={supermens}/>
-        <Footer/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header />
+            <Cardlist heroes={heroes} />
+            <Footer />
+        </div>
+    );
 }

@@ -1,27 +1,33 @@
 import React from "react";
-import { Superman } from "../types/temp";
+import { Hero } from "../types/Hero";
 import "./Card.scss";
+import { Link } from "react-router-dom";
 
 interface Props {
-    superman: Superman;
+    hero: Hero;
 }
 
-export const Card: React.FC<Props> = ({ superman }) => {
-    //const charUrl = `/characters/${id}`;
-    const tempimage = 'https://people.com/thmb/ymEghRbHxdjLK5JoI-2Oiw-R3FA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(689x409:691x411):format(webp)/Ezra-Miller-as-Flash-Warner-Bros-080422-1a1d7a5357a84f5e8fe25fc4833afeef.jpg';
+export const Card: React.FC<Props> = ({ hero }) => {
+    const { id, nickname, real_name, catch_phrase, images } = hero;
+    const imagesArray = JSON.parse(images);
+    console.log(imagesArray[0]);
+    const charUrl = `/heroes/${id}`;
     return (
-        <div className="card">
-            <div className="card_image_container">
-                <img className="card_image" src={`${tempimage}`} alt="char_img" />
-            </div>
-            <div className="card_desc">
-                <div className="card_desc_name">{superman.nickname}</div>
-                <div className="card_desc_name">{superman.real_name}</div>
+        <Link to={charUrl}>
+            <div className="card">
+                <div className="card_image_container">
+                    <img className="card_image" src={imagesArray[0]} alt="char_img" />
+                </div>
+                <div className="card_desc">
+                    <div className="card_desc_name">{nickname}</div>
+                    <div className="card_desc_name">{real_name}</div>
 
-                <div className="card_desc_section">
-                    <span className="card_desc_text">{superman.catch_phrase}</span>
+                    <div className="card_desc_section">
+                        <span className="card_desc_text">{catch_phrase}</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
+
     );
 };

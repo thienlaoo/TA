@@ -1,0 +1,29 @@
+.char {
+    &_card {
+        display: flex;
+        flex-direction: row;
+        background-color: #3c3e44;
+        width: 1220px;
+        height: 571px;
+        border-radius: 9px;
+    }
+
+    &_image {
+        background-image: url(../../../public/22.jpeg.png);
+        width: 595px;
+        height: 572px;
+        background-size: 595px 572px;
+        border-radius: 9px 0px 0px 9px;
+    }
+}
+
+.card_desc_other_info {
+    width: 567px;
+    height: 205px;
+    display: flex;
+    flex-direction: column;
+}
+
+.char_info {
+    margin-bottom: 14px;
+}
