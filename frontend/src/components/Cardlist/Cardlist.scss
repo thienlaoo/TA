@@ -1,0 +1,25 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #272b33;
+    height: 100vh;
+  }
+  
+  
+  
+  .cardlist {
+    display: grid;
+    gap: 27px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+  
+    &_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+  
+  }
