@@ -1,0 +1,62 @@
+@import "../fonts/fonts";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 393px;
+  background: #202329;
+
+  &_text {
+    padding-top: 100px;
+    color: #9E9E9E;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 13.5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21.938px; /* 162.5% */
+    text-transform: uppercase;
+  }
+
+
+  &_links {
+    padding-top: 40px;
+    gap: 27px;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_git {
+      height: 18px;
+      width: 18px;
+      background-image: url("../../../public/git.svg");
+      background-repeat: no-repeat;
+    }
+
+    &_twitter {
+      height: 15px;
+      width: 18px;
+      background-image: url("../../../public/twi.svg");
+      background-repeat: no-repeat;
+    }
+
+    &_like {
+      height: 15px;
+      width: 17px;
+      background-repeat: no-repeat;
+      background-image: url("../../../public/like.svg");
+    }
+  }
+
+  &_year {
+    padding-top: 33px;
+    color: #9E9E9E;
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 12.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21.938px;
+  }
+}

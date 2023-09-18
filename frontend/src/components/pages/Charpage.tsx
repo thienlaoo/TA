@@ -7,7 +7,9 @@ export const CharPage = () => {
     return (
         <>
             <Header />
+            <div className="main_container">
             <CharCard />
+            </div>
             <Footer />
         </>
     )

@@ -1,21 +1,18 @@
 import { Header } from '../Header';
 import { Footer } from '../Footer/Footer';
 import { Cardlist } from '../Cardlist/Cardlist';
-import { Hero } from '../types/Hero';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { getAllHeroes } from '../Helpers/fetchHelper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setHeroes } from '../Redux/actions';
-import rootReducer from '../Redux/reducers';
-import { configureStore } from '@reduxjs/toolkit';
+import { RootState } from '../types/Hero';
 
-const store = configureStore({
-    reducer: rootReducer,
-  });
 
-export const Main = () => {
+
+  export const Main = () => {
     const dispatch = useDispatch();
-    const heroes = useSelector((state) => state.heroes);
+    
+    const heroes = useSelector((state: RootState) => state.heroes);
 
     useEffect(() => {
         getAllHeroes('http://localhost:3001/heroes')

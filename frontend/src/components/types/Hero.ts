@@ -7,3 +7,7 @@ export interface Hero {
     catch_phrase: string;
     images: string;
   }
+
+  export type RootState = {
+        heroes: Hero[] | null;
+};
