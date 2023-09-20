@@ -6,5 +6,6 @@ export const validateCreateHero = [
     check('origin_description').notEmpty(),
     check('superpowers').notEmpty(),
     check('catch_phrase').notEmpty(),
+    check('imageToShow').notEmpty(),
     check('images').notEmpty(),
 ];

@@ -17,7 +17,7 @@
     &_desc {
       padding-top: 12px;
       padding-left: 13px;
-      width: 344px;
+      width: 500px;
   
       &_name {
         color: #F5F5F5;
@@ -25,7 +25,10 @@
         font-size: 27px;
         font-style: normal;
         font-weight: 800;
+
         line-height: 29.7px;
+        border: none;
+        outline: none;
       }
   
       &_info {
@@ -66,3 +69,5 @@
   a {
       text-decoration: none;
   }
+
+  

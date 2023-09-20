@@ -13,5 +13,51 @@
         height: 572px;
         background-size: 595px 572px;
         border-radius: 9px 0px 0px 9px;
+
+        &-select {
+            position: absolute;
+            margin-bottom: 900px;
+        }
+
+        &-photo {
+            width: 150px;
+            height: 150px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+        }
+    }
+
+    &_desc {
+        padding-top: 12px;
+        padding-left: 13px;
+
+        &_name {
+            color: #F5F5F5;
+            font-family: Roboto, sans-serif;
+            font-size: 27px;
+            font-style: normal;
+            font-weight: 800;
+            background-color: #3c3e44;
+            line-height: 29.7px;
+            border: none;
+            outline: none;
+        }
+
+        &_text {
+            padding-top: 36px;
+            color: #9E9E9E;
+            font-family: Roboto, sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px;
+            width: auto;
+
+            resize: none;
+            height: auto;
+            width: 500px;
+            background-color: #3c3e44;
+            overflow: hidden;
+        }
     }
 }

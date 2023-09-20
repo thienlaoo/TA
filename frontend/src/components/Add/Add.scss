@@ -1,0 +1,24 @@
+.cardlist_more {
+    margin-right: 3px;
+    margin-bottom: 3px;
+    border: none;
+    background: #FFF;
+    font-size: 24px;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+
+    &_wrapper {
+        position: absolute;
+        margin-left: 1500px;
+        margin-top: 750px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 56px;
+        background: #FFF;
+        cursor: pointer;
+    }
+}

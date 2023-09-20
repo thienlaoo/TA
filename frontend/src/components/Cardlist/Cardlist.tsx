@@ -3,6 +3,7 @@ import "./Cardlist.scss";
 import { Card } from "../Card/Card";
 import { Hero } from "../types/Hero";
 import { Pagination } from "../Pagination/Pagination";
+import { Add } from "../Add/Add";
 
 interface Props {
     heroes: Hero[] | null;
@@ -41,6 +42,7 @@ export const Cardlist: React.FC<Props> = ({ heroes }) => {
                 currentPage={currentPage}
                 onPageChange={onPageChange}
             />
+            <Add/>
         </div>
     );
 };
