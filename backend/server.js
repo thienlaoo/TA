@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { heroRoutes } from './Routes/hero.route.js';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 
