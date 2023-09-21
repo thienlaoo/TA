@@ -31,12 +31,7 @@ module.exports = {
         allowNull: false
       },
       images: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      imageToShow: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false
       },
       createdAt: {

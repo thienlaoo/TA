@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CreateHero } from '../types/Hero';
-import './Modal.css';
+import './Modal.scss';
 
 interface Props {
     isOpen: boolean;
@@ -9,27 +9,52 @@ interface Props {
 }
 
 export const Modal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<CreateHero>({
         nickname: '',
         real_name: '',
         origin_description: '',
         superpowers: '',
         catch_phrase: '',
-        images: '',
+        images: [],
     });
+    
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+
+        const newValue = name === 'images' ? [value] : value;
+
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: newValue,
         });
     };
 
-    const handleSubmit = () => {
-        onSave(formData);
+    const handleSubmit = async () => {
+        fetch('http://localhost:3001/heroes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Hero created successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error creating hero:', error);
+            });
+
         onClose();
     };
+
+
 
     return isOpen ? (
         <div className="modal-overlay">
@@ -56,7 +81,8 @@ export const Modal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
                     </div>
                     <div className="form-group">
                         <label>Origin Description:</label>
-                        <textarea
+                        <input
+                            type="text"
                             name="origin_description"
                             value={formData.origin_description}
                             onChange={handleInputChange}
@@ -80,6 +106,16 @@ export const Modal: React.FC<Props> = ({ isOpen, onClose, onSave }) => {
                             onChange={handleInputChange}
                         />
                     </div>
+                    <div className="form-group">
+                        <label>Image: paste URL</label>
+                        <input
+                            type="text"
+                            name="images"
+                            value={formData.images}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+
                 </form>
                 <div className="modal-buttons">
                     <button onClick={onClose}>Cancel</button>

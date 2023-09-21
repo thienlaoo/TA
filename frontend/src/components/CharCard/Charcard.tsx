@@ -124,7 +124,7 @@ export const CharCard = () => {
 
     const handleDeleteHero = async () => {
         try {
-            //await deleteHero(heroId);
+            await deleteHero(heroId);
             setDeleted(!deleted);
         } catch (error) {
         }
@@ -247,10 +247,12 @@ export const CharCard = () => {
                             updatedData.superpowers || superpowers
                         )}
                     </div>
+                    <div className="modal-buttons">
                     <button type="submit">Save</button>
-                </form>
+                    <button  type="button" onClick={handleDeleteHero}>Delete Hero</button>
+                    </div>
 
-                <button type="button" onClick={handleDeleteHero}>Delete Hero</button>
+                </form>
             </div>
         </article>
     ) : (<>

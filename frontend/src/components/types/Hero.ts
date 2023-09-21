@@ -18,5 +18,5 @@ export interface CreateHero {
     origin_description: string;
     superpowers: string;
     catch_phrase: string;
-    images: string;
+    images: string[];
 }

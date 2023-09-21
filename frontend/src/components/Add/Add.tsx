@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { Hero } from '../types/Hero';
+import { CreateHero} from '../types/Hero';
 import './Add.scss';
 
 export const Add = () => {
@@ -14,7 +14,7 @@ export const Add = () => {
         setIsOpen(false);
     }
 
-    const handleSave = (formData: Hero) => {
+    const handleSave = (formData: CreateHero) => {
         console.log('New hero data:', formData);
     }
 
